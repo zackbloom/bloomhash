@@ -1,4 +1,4 @@
-req = $.Deferred()
+var req = $.Deferred();
 $.ajax('resources/words.txt').then(function(text){
   var words = text.split('\n');
 
@@ -10,56 +10,58 @@ $.ajax('resources/words.txt').then(function(text){
 });
 
 $(function(){
-  $words = document.querySelector('.words')
-  $code = document.querySelector('.code')
+  var $words = document.querySelector('.words');
+  var $code = document.querySelector('.code');
 
-  $words.innerHTML = 'Loading...'
+  $words.innerHTML = 'Loading...';
 
   function create(hash){
-    hash = hash || uuid()
-    $code.innerHTML = hash
+    hash = hash || uuid();
+    $code.innerHTML = hash;
 
     req.then(function(words){
-      var _hash = hash.replace(/-/g, '')
+      var _hash = hash.replace(/-/g, '');
 
-      var id = BigNumber(_hash, 16)
+      var id = BigNumber(_hash, 16);
 
-      var bin = id.toString(2)
+      var bin = id.toString(2);
 
-      while (bin.length < 128)
-        bin = '0' + bin
-      
-      // Get rid of the extra two bits that are not used
-      var chunk = bin.substr(64, 4)
-      chunk = parseInt(chunk, 2) - 8
-      bin = bin.substr(0, 64) + chunk.toString(2) + bin.substr(68)
-
-      // Get rid of the version number
-      bin = bin.substr(0, 48) + bin.substr(52)
-
-      var list = [];
-      for(var i=0; i < 8; i++){
-        var bit = bin.substr(i * 16, 16)
-
-        var val = parseInt(bit, 2)
-        list.unshift(words[val].toLowerCase().trim())
+      while (bin.length < 128){
+        bin = '0' + bin;
       }
 
-      var wordStr = ''
-      for(var i=0; i < list.length; i++)
-        wordStr += '<span>' + list[i] + '</span>-'
-      wordStr = wordStr.substr(0, wordStr.length - 1)
+      // Get rid of the extra two bits that are not used
+      var chunk = bin.substr(64, 4);
+      chunk = parseInt(chunk, 2) - 8;
+      bin = bin.substr(0, 64) + chunk.toString(2) + bin.substr(68);
 
-      $words.innerHTML = wordStr
+      // Get rid of the version number
+      bin = bin.substr(0, 48) + bin.substr(52);
 
-      history.replaceState({}, '', '/' + hash)
+      var list = [];
+      for(var i = 0; i < 8; i++){
+        var bit = bin.substr(i * 16, 16);
+
+        var val = parseInt(bit, 2);
+        list.unshift(words[val].toLowerCase().trim());
+      }
+
+      var wordStr = '';
+      for(var i = 0; i < list.length; i++){
+        wordStr += '<span>' + list[i] + '</span>-';
+      }
+      wordStr = wordStr.substr(0, wordStr.length - 1);
+
+      $words.innerHTML = wordStr;
+
+      history.replaceState({}, '', '/' + hash);
     });
   }
 
   if (/^\/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(document.location.pathname)){
-    create(document.location.pathname.toString().substr(1))
+    create(document.location.pathname.toString().substr(1));
   } else {
-    create()
+    create();
   }
 });
 

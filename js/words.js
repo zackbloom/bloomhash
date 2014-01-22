@@ -3,7 +3,7 @@ $.ajax('resources/words.txt').then(function(text){
   var words = text.split('\n');
 
   // Newline at the end of the file
-  words.pop()
+  words.pop();
 
   words.sort(function(a, b){
     return a.length - b.length;
@@ -25,6 +25,8 @@ $(function(){
     $code.innerHTML = hash;
 
     req.then(function(words){
+      var i;
+
       var _hash = hash.replace(/-/g, '');
 
       var id = BigNumber(_hash, 16);
@@ -44,7 +46,7 @@ $(function(){
       bin = bin.substr(0, 48) + bin.substr(52);
 
       var list = [];
-      for(var i = 0; i < 8; i++){
+      for(i = 0; i < 8; i++){
         // The last (which ends up as first) only gets 10 bits, which means the
         // first word is going to be one of the 1024 shortest.
         var bit = bin.substr(i * 16, 16);
@@ -54,15 +56,43 @@ $(function(){
       }
 
       var wordStr = '';
-      for(var i = 0; i < list.length; i++){
+      for (i = 0; i < list.length; i++) {
         wordStr += '<span>' + list[i] + '</span>-';
       }
       wordStr = wordStr.substr(0, wordStr.length - 1);
 
       $words.innerHTML = wordStr;
+      fitWords();
 
       $permalink.href = '/' + hash;
     });
+  }
+
+  function fitWords() {
+    var $words = $('.words');
+    $words.addClass('adjusting-size');
+
+    var fontSize = 8;
+    var windowWidth = $(window).width();
+
+    while (fontSize < 40) {
+      $words.css('font-size', fontSize);
+      if ($words.outerWidth() > windowWidth - 100) {
+        break;
+      } else {
+        fontSize++;
+      }
+    }
+
+    var resizeTimeout;
+    $(window).resize(function(){
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function(){
+        fitWords();
+      }, 800);
+    });
+
+    $words.removeClass('adjusting-size');
   }
 
   if (/^\/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(document.location.pathname)){

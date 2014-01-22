@@ -20,9 +20,9 @@ $(function(){
     $code.innerHTML = hash
 
     req.then(function(words){
-      hash = hash.replace(/-/g, '')
+      var _hash = hash.replace(/-/g, '')
 
-      var id = BigNumber(hash, 16)
+      var id = BigNumber(_hash, 16)
 
       var bin = id.toString(2)
 
@@ -52,6 +52,7 @@ $(function(){
 
       $words.innerHTML = wordStr
 
+      history.replaceState({}, '', '/' + hash)
     });
   }
 

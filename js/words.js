@@ -17,7 +17,7 @@ $(function(){
 
   $words.innerHTML = 'Loading...';
 
-  function create(hash){
+  function create($code, $words, $permalink, hash){
     hash = hash || uuid();
     $code.innerHTML = hash;
 
@@ -61,9 +61,9 @@ $(function(){
   }
 
   if (/^\/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(document.location.pathname)){
-    create(document.location.pathname.toString().substr(1));
+    create($code, $words, $permalink, document.location.pathname.toString().substr(1));
   } else {
-    create();
+    create($code, $words, $permalink);
   }
 
   $random.addEventListener('click', function(e){
@@ -73,6 +73,33 @@ $(function(){
 
     create();
   });
+
+  var $hashTable = document.querySelector('.hash-table');
+  var j = 1000;
+  var createTableRow = function(){
+
+    var $code = document.createElement('td');
+    var $words = document.createElement('td');
+    var $permalinkContainer = document.createElement('td');
+    var $permalink = document.createElement('a');
+    var $row = document.createElement('tr');
+
+    $permalink.innerText = 'Permalink';
+    $permalinkContainer.appendChild($permalink);
+    $row.appendChild($code);
+    $row.appendChild($words);
+    $row.appendChild($permalinkContainer);
+    $hashTable.appendChild($row);
+
+    create($code, $words, $permalink);
+
+    j *= 0.95;
+    if (j > 1){
+      setTimeout(createTableRow, j);
+    }
+  };
+
+  var interval = setTimeout(createTableRow, j);
 });
 
 function uuid(){

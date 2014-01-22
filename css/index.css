@@ -32,6 +32,7 @@ body {
   display: block;
 }
 
+
 .controls {
   width: 100%;
   text-align: center;
@@ -41,8 +42,18 @@ body {
   color: #33D;
 }
 
+.page table {
+  margin: 20px auto;
+  text-align: left;
+}
+
+.page table td,
+.page table th {
+  padding: 3px 10px;
+}
+
 .words {
-  font-size: 36px; 
+  font-size: 36px;
   font-family: Nexa, sans-serif;
   font-weight: bold;
 }

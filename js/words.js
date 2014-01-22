@@ -13,6 +13,8 @@ $(function(){
   $words = document.querySelector('.words')
   $code = document.querySelector('.code')
 
+  $words.innerHTML = 'Loading...'
+
   function create(hash){
     hash = hash || uuid()
     $code.innerHTML = hash

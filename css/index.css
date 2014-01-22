@@ -1,0 +1,29 @@
+.page {
+  margin: 10px auto;
+  padding-top: 150px;
+}
+.page p {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+}
+.page p:first-of-type {
+  margin-top: 100px;
+}
+.page output {
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+.words {
+  font-size: 36px; 
+}
+.words span {
+  padding: 0 10px;
+}
+
+.code {
+  font-size: 16px;
+}
+

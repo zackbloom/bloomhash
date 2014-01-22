@@ -49,6 +49,7 @@ h1 {
 }
 .done {
   opacity: 0;
+  pointer-events: none;
 }
 
 .scroll {

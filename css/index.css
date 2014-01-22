@@ -37,6 +37,9 @@ body {
   text-align: center;
   padding-top: 20px;
 }
+.controls a:visited {
+  color: #33D;
+}
 
 .words {
   font-size: 36px; 

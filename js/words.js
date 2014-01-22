@@ -38,12 +38,11 @@ $(function(){
       bin = bin.substr(0, 48) + bin.substr(52)
 
       var list = [];
-      console.log(words.length);
       for(var i=0; i < 8; i++){
         var bit = bin.substr(i * 16, 16)
 
         var val = parseInt(bit, 2)
-        list.unshift(words[val].toLowerCase())
+        list.unshift(words[val].toLowerCase().trim())
       }
 
       var wordStr = ''

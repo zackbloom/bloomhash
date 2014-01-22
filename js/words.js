@@ -2,6 +2,9 @@ var req = $.Deferred();
 $.ajax('resources/words.txt').then(function(text){
   var words = text.split('\n');
 
+  // Newline at the end of the file
+  words.pop()
+
   words.sort(function(a, b){
     return a.length - b.length;
   });

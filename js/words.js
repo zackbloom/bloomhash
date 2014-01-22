@@ -45,6 +45,8 @@ $(function(){
 
       var list = [];
       for(var i = 0; i < 8; i++){
+        // The last (which ends up as first) only gets 10 bits, which means the
+        // first word is going to be one of the 1024 shortest.
         var bit = bin.substr(i * 16, 16);
 
         var val = parseInt(bit, 2);

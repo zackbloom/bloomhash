@@ -1,5 +1,5 @@
 req = $.Deferred()
-$.ajax('resources/words').then(function(text){
+$.ajax('resources/words.txt').then(function(text){
   var words = text.split('\n');
 
   words.sort(function(a, b){

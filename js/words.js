@@ -13,12 +13,10 @@ $.ajax('resources/words.txt').then(function(text){
 });
 
 $(function(){
-  var $words = document.querySelector('.words');
+  var $words = $('.words');
   var $code = document.querySelector('.code');
   var $permalink = document.querySelector('.permalink');
   var $random = document.querySelector('.random');
-
-  $words.innerHTML = 'Loading...';
 
   function create(hash){
     hash = hash || uuid();
@@ -61,8 +59,10 @@ $(function(){
       }
       wordStr = wordStr.substr(0, wordStr.length - 1);
 
-      $words.innerHTML = wordStr;
+      $words.html(wordStr);
       fitWords();
+
+      $('.loading').addClass('done');
 
       $permalink.href = '/' + hash;
     });

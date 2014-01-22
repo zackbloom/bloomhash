@@ -37,6 +37,20 @@ h1 {
 .c8 { color: #FF00AD; }
 .c9 { color: #EB0067; }
 
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: #000;
+  transition: opacity .2s;
+}
+.done {
+  opacity: 0;
+}
+
 .scroll {
   overflow: auto;
   -webkit-overflow-scrolling: touch;

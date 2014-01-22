@@ -21,6 +21,7 @@ body {
   max-width: 800px;
   margin: 20px auto;
   text-align: center;
+  clear: both;
 }
 .page p:first-of-type {
   margin-top: 100px;
@@ -32,7 +33,9 @@ body {
 }
 
 .controls {
-  
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .words {

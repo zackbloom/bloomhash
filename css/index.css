@@ -55,3 +55,9 @@ body {
   font-family: Nexa, sans-serif;
 }
 
+.github {
+  text-align: center;
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+}

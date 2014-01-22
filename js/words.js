@@ -12,6 +12,7 @@ $.ajax('resources/words.txt').then(function(text){
 $(function(){
   var $words = document.querySelector('.words');
   var $code = document.querySelector('.code');
+  var $permalink = document.querySelector('.permalink')
 
   $words.innerHTML = 'Loading...';
 
@@ -54,7 +55,7 @@ $(function(){
 
       $words.innerHTML = wordStr;
 
-      history.replaceState({}, '', '/' + hash);
+      $permalink.href = '/' + hash
     });
   }
 

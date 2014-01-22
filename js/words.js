@@ -12,7 +12,8 @@ $.ajax('resources/words.txt').then(function(text){
 $(function(){
   var $words = document.querySelector('.words');
   var $code = document.querySelector('.code');
-  var $permalink = document.querySelector('.permalink')
+  var $permalink = document.querySelector('.permalink');
+  var $random = document.querySelector('.random');
 
   $words.innerHTML = 'Loading...';
 
@@ -55,7 +56,7 @@ $(function(){
 
       $words.innerHTML = wordStr;
 
-      $permalink.href = '/' + hash
+      $permalink.href = '/' + hash;
     });
   }
 
@@ -64,6 +65,14 @@ $(function(){
   } else {
     create();
   }
+
+  $random.addEventListener('click', function(e){
+    e.preventDefault();
+
+    history.replaceState({}, '', '/');
+
+    create();
+  });
 });
 
 function uuid(){

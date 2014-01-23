@@ -9,27 +9,76 @@
   src: url("../fonts/Nexa Bold.otf") format("opentype");
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: Nexa, sans-serif;
+  background: #000;
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 7vw;
+  margin-bottom: 80px;
+  font-weight: 100;
+  margin-top: 0;
+  line-height: 1;
+}
+.c1 { color: #FF2828; }
+.c2 { color: #B93F0F; }
+.c3 { color: #FF00B8; }
+.c4 { color: #C02510; }
+.c5 { color: #E000C5; }
+.c6 { color: #ffffff; }
+.c7 { color: #FF4444; }
+.c8 { color: #FF00AD; }
+.c9 { color: #EB0067; }
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: #000;
+  transition: opacity .2s;
+}
+.done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .page {
-  margin: 10px auto;
   padding-top: 150px;
-}
-.page p {
-  max-width: 800px;
-  margin: 20px auto;
   text-align: center;
-  clear: both;
 }
-.page p:first-of-type {
-  margin-top: 100px;
-}
-.page output {
+.page .output-wrap {
   text-align: center;
   width: 100%;
   display: block;
+}
+.page {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.page-inner {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .controls {
@@ -37,27 +86,63 @@ body {
   text-align: center;
   padding-top: 20px;
 }
-.controls a:visited {
-  color: #33D;
+.controls a {
+  display: inline-block;
+  color: #00FFE0;
+  outline: none;
+  text-decoration: none;
+  background: #171D1A;
+  padding: 10px 20px;
+  opacity: 0.8;
+}
+.controls a:hover {
+  opacity: 1;
+}
+.controls a:first-child {
+  margin-right: 10px;
 }
 
 .words {
-  font-size: 36px; 
+  font-size: 36px;
   font-family: Nexa, sans-serif;
-  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+  background: #1a1a1a;
+  padding: .7em 1em;
+  color: #fff;
+  border: .2em solid #101010;
 }
 .words span {
   padding: 0 10px;
 }
+.words.adjusting-size {
+  opacity: 0;
+}
 
 .code {
+  display: inline-block;
   font-size: 16px;
   font-family: Nexa, sans-serif;
+  background: #101010;
+  padding: 13px 21px 11px;
+  color: #555;
+}
+
+p.about {
+  padding: 20px;
+  background: #111;
+  color: #808080;
+  display: inline-block;
+  opacity: 0.8;
+  margin-bottom: 100px;
+  margin-top: 80px;
 }
 
 .github {
-  text-align: center;
-  position: fixed;
-  bottom: 10px;
+  text-decoration: none;
+  display: inline-block;
+  padding-top: 10px;
   width: 100%;
+  color: inherit;
+  border-bottom: 1px solid;
 }
